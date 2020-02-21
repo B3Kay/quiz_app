@@ -31,6 +31,7 @@
         </button>
       </div>
     </div>
+    <h2>Game points: {{ gamePoints }}</h2>
   </div>
 </template>
 
@@ -82,6 +83,9 @@ export default {
         }
         return 0;
       });
+    },
+    gamePoints() {
+      return this.$store.state.gamePoints;
     },
     // donePeoplesCount() {
     //   return this.$store.getters.donePeoplesCount;

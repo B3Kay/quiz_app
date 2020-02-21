@@ -20,8 +20,10 @@ export default new Vuex.Store({
     // Person
     currentPerson: {},
     randomPeople: [],
+    // Game Mechanics
     gameStatus: 'RUNNING',
     level: 2,
+    gamePoints: 0,
   },
   getters: {
     peopleCollection(state) {
@@ -66,6 +68,9 @@ export default new Vuex.Store({
     },
     HIDE_GAME_STATUSES(state) {
       state.gameStatus = 'RUNNING';
+    },
+    SET_GAME_POINTS(state, payload) {
+      state.gamePoints += payload;
     },
   },
   actions: {
@@ -117,6 +122,7 @@ export default new Vuex.Store({
       if (context.state.currentPerson.Id === person.Id) {
         console.log(`${person.Name} is correct!!!`);
         context.commit('GAME_STATUS', 'SUCCESS');
+        context.commit('SET_GAME_POINTS', 5);
       } else {
         console.log(`${person.Name} is incorrect...`);
         context.commit('GAME_STATUS', 'FAILED');
