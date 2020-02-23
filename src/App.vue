@@ -1,5 +1,8 @@
 <template>
-  <div id="app">
+  <div
+    id="app"
+    class="h-screen bg-gradient-br-gray-yellow"
+  >
     <div id="nav">
       <router-link to="/">
         Home
@@ -19,6 +22,8 @@
 </template>
 
 <style>
+@import 'assets/styles/tailwind.postcss';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

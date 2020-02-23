@@ -1,36 +1,56 @@
 
 <template>
   <div class="home">
-    <h1>Squeedoo</h1>
-    <h2>Who is this Squeeder?</h2>
+    <!-- <h1 class="text-yellow-500 text-4xl font-black uppercase">
+      Squeedoo
+    </h1>
+    <h2 class="">
+      Who is this Squeeder?
+    </h2> -->
     <div v-if="!loadingCollection">
       Loading...
     </div>
+
     <div v-if="loadingCollection">
-      <div>
-        <img
-          v-if="true"
-          :style="{height: '500px', width: '500px', borderRadius: '9999px'}"
-          :src="'https://www.squeed.com/' + person.ImageUrl"
-        >
-        <ul>
+      <div class="">
+        <div class="flex justify-center">
+          <img
+            v-if="true"
+            class="w-full max-w-lg md:rounded-lg"
+            :src="'https://www.squeed.com/' + person.ImageUrl"
+          >
+        </div>
+        <ul class="mt-10 mb-10">
           <li
             v-for="gamePerson in gameCollection"
             :key="gamePerson.Id"
           >
-            <button @click="checkIfCorrectPerson(gamePerson)">
+            <button
+              class="w-full bg-gradient-r-pink-purple mb-2 hover:bg-yellow-500 hover:text-white
+              max-w-md rounded h-12 text-lg text-white hover:bg-gradient
+              "
+              @click="checkIfCorrectPerson(gamePerson)"
+            >
               {{ gamePerson.Name }}
             </button>
           </li>
         </ul>
       </div>
       <div v-if="gameStatus !== 'RUNNING'">
-        <p>{{ gameStatus }}</p>
-        <button @click="nextPerson">
-          Next Squeeder
+        <p :class="getGameStatusColorClass">
+          {{ gameStatus }}
+        </p>
+        <button
+          class=" bg-gradient-br-orange-red hover:bg-yellow-600 hover:text-white
+          h-24 w-24 rounded-full text-white
+          "
+          @click="nextPerson"
+        >
+          NEXT
         </button>
       </div>
     </div>
+
     <h2>Game points: {{ gamePoints }}</h2>
   </div>
 </template>
@@ -86,6 +106,12 @@ export default {
     },
     gamePoints() {
       return this.$store.state.gamePoints;
+    },
+    getGameStatusColorClass() {
+      const stts = this.$store.state.gameStatus;
+      if (stts === 'SUCCESS') return 'bg-green-500';
+      if (stts === 'FAILED') return 'bg-red-500';
+      return '';
     },
     // donePeoplesCount() {
     //   return this.$store.getters.donePeoplesCount;
