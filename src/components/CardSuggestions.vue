@@ -4,17 +4,14 @@
     id="card-suggestions"
     class="p-4"
   >
-    <transition-group name="suggestions">
-      <suggestion-button
-        v-for="people in showPeopleList"
-
-        :key="people.Id"
-        :content="people.Name"
-        @click.native="checkIfCorrectPerson(people)"
-      >
-        {{ people.Name }}
-      </suggestion-button>
-    </transition-group>
+    <suggestion-button
+      v-for="people in showPeopleList"
+      :key="people.Id"
+      :content="people.Name"
+      @click.native="checkIfCorrectPerson(people)"
+    >
+      {{ people.Name }}
+    </suggestion-button>
   </div>
 </template>
 
@@ -66,15 +63,22 @@ export default {
 
 <style  scoped>
 
-.suggestions-item {
-  display: inline-block;
-  margin-right: 10px;
+
+.suggestions-enter-active {
+  animation: bounce-in .5s;
 }
-.suggestions-enter-active, .suggestions-leave-active {
-  transition: all 1s;
+.suggestions-leave-active {
+  animation: bounce-in .8s reverse;
 }
-.suggestions-enter,.suggestions-leave-to /* .list-leave-active below version 2.1.8 */ {
-  opacity: 0;
-  transform: translateY(30px);
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

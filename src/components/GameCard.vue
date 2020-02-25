@@ -1,9 +1,10 @@
+
 <template>
   <div
     id="game-card"
     class="bg-white rounded-lg items-center h-full"
   >
-    <transition>
+    <transition name="card-content">
       <div v-if="!parentIsAnimating">
         <card-header />
         <card-image :url="person.ImageUrl" />
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+
 import CardHeader from './CardHeader.vue';
 import CardImage from './CardImage.vue';
 import CardSuggestions from './CardSuggestions.vue';
@@ -78,5 +80,23 @@ export default {
 </script>
 
 <style  scoped>
-
+.card-content-enter-active {
+  animation: bounce-in .5s;
+}
+.card-content-leave-active {
+  animation: bounce-in .3s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  /* 50% {
+    transform:  translateY(20px);
+  } */
+  100% {
+    transform:  translateY(0);
+    opacity: 1;
+  }
+}
 </style>
