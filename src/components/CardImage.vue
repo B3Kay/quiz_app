@@ -4,20 +4,22 @@
     id="card-image"
     class="p-4"
   >
-    <img
+    <v-lazy-image
       v-if="true"
       class="w-full max-w-lg md:rounded-lg rounded-full"
-      :src="'https://www.squeed.com/' + url"
-    >
+      :src="url ? 'https://www.squeed.com/' + url : null"
+      src-placeholder="https://image.flaticon.com/icons/svg/616/616495.svg"
+    />
   </div>
 </template>
 
 <script>
 // import OtherComponent from './OtherComponent.vue';
+import VLazyImage from 'v-lazy-image';
 
 export default {
   components: {
-    // OtherComponent,
+    VLazyImage,
   },
   props: {
     url: String,
