@@ -2,8 +2,7 @@
 <template>
   <div
     id="game-card"
-    class="bg-white rounded-lg items-center"
-    :style="{minHeight: '47rem'}"
+    class="bg-white rounded-lg items-center flex-grow"
   >
     <transition name="card-content">
       <div v-show="!parentIsAnimating">

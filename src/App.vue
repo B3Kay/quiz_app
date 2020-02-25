@@ -3,7 +3,10 @@
     id="app"
     class="h-screen bg-gray-200"
   >
-    <div id="nav">
+    <div
+      v-show="this.$route.path !== '/game'"
+      id="nav"
+    >
       <router-link to="/">
         Home
       </router-link> |

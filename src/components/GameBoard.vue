@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-b-red-orange-red p-4 h-full">
+  <div class="bg-gradient-b-red-orange-red p-4 h-full flex flex-col">
     <div class="text-left">
       <transition
 
