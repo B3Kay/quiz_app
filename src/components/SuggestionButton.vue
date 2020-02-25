@@ -1,5 +1,5 @@
 <template>
-  <div
+  <button
     id="suggestion-button"
     class="bg-transparent hover:bg-gradient-r-red-orange-red text-gray-700 font-semibold
     hover:text-white py-3 px-4 border-2 border-gray-500 hover:border-transparent
@@ -10,7 +10,7 @@
     <!-- <button @onClick="log">
       bosse
     </button> -->
-  </div>
+  </button>
 </template>
 
 <script>
@@ -23,6 +23,7 @@ export default {
   props: {
     text: String,
     content: String,
+    // class: String,
     // onClick: {
     //   type: Function,
     // },

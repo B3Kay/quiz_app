@@ -8,6 +8,7 @@
       v-for="people in showPeopleList"
       :key="people.Id"
       :content="people.Name"
+      class="w-full"
       @click.native="checkIfCorrectPerson(people)"
     >
       {{ people.Name }}
@@ -56,7 +57,7 @@ export default {
     nextPerson() {
       this.$store.dispatch('showNextPerson');
     },
-    checkIfCorrectPerson(param) { console.log(param); this.$store.dispatch('checkIfCorrectPerson', param); },
+    checkIfCorrectPerson(param) { this.$store.dispatch('checkIfCorrectPerson', param); },
   },
 };
 </script>

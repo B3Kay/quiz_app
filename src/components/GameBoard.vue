@@ -1,5 +1,30 @@
 <template>
-  <div class="bg-gradient-b-red-orange-red p-4 h-full ">
+  <div class="bg-gradient-b-red-orange-red p-4 h-full">
+    <div class="text-left">
+      <transition
+
+        name="bounce"
+        mode="out-in"
+      >
+        <div v-if="!loadingCollection">
+          <p class="text-white pb-2">
+            Question {{ currentQuestion }} / {{ totalQuestions }}
+          </p>
+          <progress-bar
+
+            class="mb-8"
+            :bars="[{ width: progressBarQuestionPercent, color: '#18bfff' }]"
+          />
+        </div>
+      </transition>
+      <!-- <b-progress
+        :value="currentQuestion"
+        :max="totalQuestions"
+        type="is-light"
+        class="pb-8"
+        size="is-small"
+      /> -->
+    </div>
     <transition
       name="bounce"
       mode="out-in"
@@ -10,7 +35,7 @@
     >
       <div
         v-if="loadingCollection"
-        class="h-full flex items-center justify-center"
+        class="h-full flex items-center justify-center h-full"
       >
         <span>
           <pacman-loader
@@ -19,8 +44,8 @@
       </div>
 
 
-      <GameCard
-        v-else
+      <game-card
+        v-show="!loadingCollection"
         :parent-is-animating="isAnimating"
         :person="currentPerson"
       />
@@ -31,12 +56,14 @@
 <script>
 import PacmanLoader from 'vue-spinner/src/PacmanLoader.vue';
 import GameCard from './GameCard.vue';
+import ProgressBar from './ProgressBar.vue';
 
 export default {
   name: 'Gameboard',
   components: {
     GameCard,
     PacmanLoader,
+    ProgressBar,
   },
   data() {
     return {
@@ -53,7 +80,15 @@ export default {
     currentPerson() { return this.$store.state.currentPerson; },
     currentGuessOptions() { return this.$store.currentPerson; },
     nextPerson() { return {}; },
-
+    currentQuestion() {
+      return this.$store.state.game.currentQuestion;
+    },
+    totalQuestions() {
+      return this.$store.getters.totalQuestions;
+    },
+    progressBarQuestionPercent() {
+      return (this.currentQuestion / this.totalQuestions) * 100;
+    },
   },
 };
 </script>

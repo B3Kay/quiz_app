@@ -2,19 +2,21 @@
 <template>
   <div
     id="game-card"
-    class="bg-white rounded-lg items-center h-full"
+    class="bg-white rounded-lg items-center"
+    :style="{height: '47rem'}"
   >
     <transition name="card-content">
-      <div v-if="!parentIsAnimating">
-        <card-header />
+      <div v-show="!parentIsAnimating">
+        <!-- <div> -->
+        <!-- <card-header /> -->
         <card-image :url="person.ImageUrl" />
 
         <!-- <h2 class="text-3xl font-bold mb-4">
       Agile coach and
     </h2> -->
-        <p v-if="parentIsAnimating">
-          Parent is animating
-        </p>
+        <!-- <p v-show="parentIsAnimating">
+        Parent is animating
+      </p> -->
         <card-suggestions
           :people-list="gameCollection"
           :level="level"
@@ -26,13 +28,13 @@
 
 <script>
 
-import CardHeader from './CardHeader.vue';
+// import CardHeader from './CardHeader.vue';
 import CardImage from './CardImage.vue';
 import CardSuggestions from './CardSuggestions.vue';
 // import OtherComponent from './OtherComponent.vue';
 export default {
   components: {
-    CardHeader,
+    // CardHeader,
     CardImage,
     CardSuggestions,
   },

@@ -5,7 +5,9 @@
   >
     <div>
       <h5 class="font-bold uppercase text-left">
-        <span class="">Fråga</span><br><span>5 av 5</span>
+        <span class="">Squeeders</span>
+        <br>
+        <span>{{ currentQuestion }} av {{ totalQuestions }}</span>
       </h5>
     </div>
 
@@ -28,6 +30,14 @@ export default {
     return {
 
     };
+  },
+  computed: {
+    currentQuestion() {
+      return this.$store.state.game.currentQuestion;
+    },
+    totalQuestions() {
+      return this.$store.getters.totalQuestions;
+    },
   },
 };
 </script>

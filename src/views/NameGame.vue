@@ -116,7 +116,7 @@ export default {
       });
     },
     gamePoints() {
-      return this.$store.state.gamePoints;
+      return this.$store.state.game.gamePoints;
     },
     getGameStatusColorClass() {
       const stts = this.$store.state.gameStatus;

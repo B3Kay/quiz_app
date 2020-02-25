@@ -3,15 +3,24 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-// import axios from 'axios';
 
 import peopleData from '../api/peopleData';
+import game from './modules/game';
 
 Vue.use(Vuex);
 // console.log(peopleData);
 
 export default new Vuex.Store({
   state: {
+    // User
+    user: {
+      uid: '',
+      nickName: 'Benjimon',
+      score: {
+        total: 100,
+        correct: 55,
+      },
+    },
     // People
     peopleCollection: [],
     peopleCollectionPending: null,
@@ -19,15 +28,27 @@ export default new Vuex.Store({
     peopleCollectionFail: null,
     // Person
     currentPerson: {},
+
     randomPeople: [],
     // Game Mechanics
     gameStatus: 'RUNNING',
     level: 2,
-    gamePoints: 0,
+
+    //
+
   },
   getters: {
     peopleCollection(state) {
       return state.peopleCollection;
+    },
+    notGuessedPeopleCollection(state) {
+      // console.log(state.peopleCollection);
+      return state.peopleCollection.filter((person) => !person.guessed);
+
+      // console.log(newState);
+    },
+    totalQuestions(state) {
+      return state.peopleCollection.length;
     },
     getNameById: (state) => (id) => state.peopleCollection.find((person) => person.Id === id),
   },
@@ -60,7 +81,8 @@ export default new Vuex.Store({
     SET_PERSON_DONE(state, person) {
       // console.log(person);
       const index = state.peopleCollection.indexOf(person);
-      state.peopleCollection[index].done = true;
+      // console.log(index);
+      state.peopleCollection[index].guessed = true;
     },
     // Game Mechanics
     GAME_STATUS(state, payload) {
@@ -69,9 +91,9 @@ export default new Vuex.Store({
     HIDE_GAME_STATUSES(state) {
       state.gameStatus = 'RUNNING';
     },
-    SET_GAME_POINTS(state, payload) {
-      state.gamePoints += payload;
-    },
+    // SET_GAME_POINTS(state, payload) {
+    //   state.gamePoints += payload;
+    // },
   },
   actions: {
     // getRandomPerson({ state }) {
@@ -88,6 +110,7 @@ export default new Vuex.Store({
       context.dispatch('setCurrentToRandom');
       context.dispatch('setRandomPeople', context.state.level);
       // console.log('Set gameStatus');
+      context.commit('SET_CURRENT_QUESTION');
       context.commit('GAME_STATUS', 'RUNNING');
     },
     setRandomPeople({ state, commit }, amount) {
@@ -109,9 +132,15 @@ export default new Vuex.Store({
       // console.log('Set current to random');
       // const randomPerson = context.dispatch('getRandomPerson');
       // console.log(randomPerson);
-      const randomPerson = context.state.peopleCollection[Math.floor(
-        Math.random() * context.state.peopleCollection.length,
+      const collection = context.state.peopleCollection.filter((person) => !person.guessed);
+      // console.log('Not Guess Poeple');
+      // console.log(collection);
+      const randomPerson = collection[Math.floor(
+        Math.random() * collection.length,
       )];
+      // const randomPerson = context.state.peopleCollection[Math.floor(
+      //   Math.random() * context.state.peopleCollection.length,
+      // )];
       context.commit('SET_CURRENT_PERSON', randomPerson);
     },
     checkIfCorrectPerson(context, person) {
@@ -129,6 +158,7 @@ export default new Vuex.Store({
         console.log(`${person.Name} is incorrect...`);
         context.commit('GAME_STATUS', 'FAILED');
       }
+      context.commit('SET_PERSON_DONE', person);
       // console.log(`${context.state.currentPerson} ${person.Id}`);
     },
     setPersonDone(context, person) {
@@ -145,6 +175,7 @@ export default new Vuex.Store({
           context.commit('SET_PEOPLE_COLLECTION_SUCCESS', true);
           context.commit('SET_PEOPLE_COLLECTION_FAIL', false);
           context.commit('SET_PEOPLE_COLLECTION_PENDING', false);
+          context.commit('RESET_GAME_SESSION');
           rseolve('Success');
         }, 1000);
       });
@@ -175,5 +206,6 @@ export default new Vuex.Store({
     },
   },
   modules: {
+    game,
   },
 });
