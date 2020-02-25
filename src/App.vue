@@ -1,11 +1,14 @@
 <template>
   <div
     id="app"
-    class="h-screen bg-gradient-br-gray-yellow"
+    class="h-screen bg-gray-200"
   >
     <div id="nav">
       <router-link to="/">
         Home
+      </router-link> |
+      <router-link to="/game">
+        Game
       </router-link> |
       <router-link to="/squeedoo">
         Squeedoo

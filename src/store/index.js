@@ -115,7 +115,8 @@ export default new Vuex.Store({
       context.commit('SET_CURRENT_PERSON', randomPerson);
     },
     checkIfCorrectPerson(context, person) {
-      if (context.state.gameStatus !== 'RUNNING') return;
+      // if (context.state.gameStatus !== 'RUNNING') return;
+
       // console.log(`Check if ${person.Name} is correct`);
       // console.log(context.state.currentPerson.Name);
       // console.log(person.Name);
@@ -123,6 +124,7 @@ export default new Vuex.Store({
         console.log(`${person.Name} is correct!!!`);
         context.commit('GAME_STATUS', 'SUCCESS');
         context.commit('SET_GAME_POINTS', 5);
+        context.dispatch('showNextPerson');
       } else {
         console.log(`${person.Name} is incorrect...`);
         context.commit('GAME_STATUS', 'FAILED');
@@ -144,7 +146,7 @@ export default new Vuex.Store({
           context.commit('SET_PEOPLE_COLLECTION_FAIL', false);
           context.commit('SET_PEOPLE_COLLECTION_PENDING', false);
           rseolve('Success');
-        }, 1000);
+        }, 2000);
       });
       call.then(() => {
         context.dispatch('setCurrentToRandom');

@@ -25,14 +25,25 @@
             v-for="gamePerson in gameCollection"
             :key="gamePerson.Id"
           >
-            <button
+            <!-- <button
               class="w-full bg-gradient-r-pink-purple mb-2 hover:bg-yellow-500 hover:text-white
               max-w-md rounded h-12 text-lg text-white hover:bg-gradient
               "
               @click="checkIfCorrectPerson(gamePerson)"
             >
               {{ gamePerson.Name }}
-            </button>
+            </button> -->
+            <b-button
+              class="mb-2"
+              :type="gamesSatus === 'SUCCESS' ? 'is-success' :
+                (gameStatus === 'FAILED' ? 'is-danger' : 'is-primary')"
+              outlined
+              expanded
+
+              @click="checkIfCorrectPerson(gamePerson)"
+            >
+              {{ gamePerson.Name }}
+            </b-button>
           </li>
         </ul>
       </div>

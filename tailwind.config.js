@@ -30,6 +30,7 @@ module.exports = {
         'orange-yellow': [theme('colors.orange.300'), theme('colors.yellow.800')],
         'orange-gray': [theme('colors.orange.800'), theme('colors.gray.700')],
         'pink-purple': [theme('colors.pink.300'), theme('colors.pink.800')],
+        'red-orange-red': [theme('colors.red.500'), theme('colors.orange.500'), theme('colors.red.500')],
       }),
       radialGradientShapes: { // defaults to this value
         default: 'ellipse',
@@ -48,12 +49,13 @@ module.exports = {
         l: 'left',
         tl: 'top left',
       },
-      radialGradientColors: { // defaults to {}
+      radialGradientColors: (theme) => ({ // defaults to {}
         red: '#f00',
         'red-blue': ['#f00', '#00f'],
         'red-green-blue': ['#f00', '#0f0', '#00f'],
         'black-white-with-stops': ['#000', '#000 45%', '#fff 55%', '#fff'],
-      },
+        'red-orange-red': [theme('colors.red.500'), theme('colors.orange.500'), theme('colors.red.500')],
+      }),
       conicGradientStartingAngles: { // defaults to this value
         default: '0',
       },
@@ -105,16 +107,20 @@ module.exports = {
         md: '20deg',
         lg: '40deg',
       },
+      fontFamily: {
+        display: ['Montserrat'],
+        body: ['Open Sans'],
+      },
     },
   },
   variants: {
-    backgroundImage: ['responsive'], // this is for the "bg-none" utility
-    linearGradients: ['responsive'],
-    radialGradients: ['responsive'],
-    conicGradients: ['responsive'],
-    repeatingLinearGradients: ['responsive'],
-    repeatingRadialGradients: ['responsive'],
-    repeatingConicGradients: ['responsive'],
+    backgroundImage: ['responsive', 'hover', 'focus'], // this is for the "bg-none" utility
+    linearGradients: ['responsive', 'hover', 'focus'],
+    radialGradients: ['responsive', 'hover', 'focus'],
+    conicGradients: ['responsive', 'hover', 'focus'],
+    repeatingLinearGradients: ['responsive', 'hover', 'focus'],
+    repeatingRadialGradients: ['responsive', 'hover', 'focus'],
+    repeatingConicGradients: ['responsive', 'hover', 'focus'],
     appearance: ['responsive'],
     backgroundAttachment: ['responsive'],
     backgroundColor: ['responsive', 'hover', 'focus'],
