@@ -28,12 +28,12 @@ export default {
 </script>
 
 <style  scoped>
-.v-lazy-image {
+/* .v-lazy-image {
   filter: blur(10px);
   transition: filter 0.8s;
 }
 
 .v-lazy-image-loaded {
   filter: blur(0);
-}
+} */
 </style>
