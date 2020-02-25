@@ -1,18 +1,25 @@
 <template>
   <div
     id="game-card"
-    class="bg-white rounded-lg items-center"
+    class="bg-white rounded-lg items-center h-full"
   >
-    <card-header />
-    <card-image :url="person.ImageUrl" />
+    <transition>
+      <div v-if="!parentIsAnimating">
+        <card-header />
+        <card-image :url="person.ImageUrl" />
 
-    <!-- <h2 class="text-3xl font-bold mb-4">
+        <!-- <h2 class="text-3xl font-bold mb-4">
       Agile coach and
     </h2> -->
-    <card-suggestions
-      :people-list="gameCollection"
-      :level="level"
-    />
+        <p v-if="parentIsAnimating">
+          Parent is animating
+        </p>
+        <card-suggestions
+          :people-list="gameCollection"
+          :level="level"
+        />
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -29,6 +36,7 @@ export default {
   },
   props: {
     person: {},
+    parentIsAnimating: Boolean,
   },
 
   data() {
