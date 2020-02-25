@@ -4,12 +4,15 @@
     class="bg-white rounded-lg items-center"
   >
     <card-header />
-    <card-image />
-    <card-title />
-    <h2 class="text-3xl font-bold mb-4">
+    <card-image :url="person.ImageUrl" />
+
+    <!-- <h2 class="text-3xl font-bold mb-4">
       Agile coach and
-    </h2>
-    <card-suggestions />
+    </h2> -->
+    <card-suggestions
+      :people-list="gameCollection"
+      :level="level"
+    />
   </div>
 </template>
 
@@ -24,10 +27,44 @@ export default {
     CardImage,
     CardSuggestions,
   },
+  props: {
+    person: {},
+  },
+
   data() {
     return {
       greeting: 'Hello',
     };
+  },
+  computed: {
+    level() {
+      return this.$store.state.level;
+    },
+    randomPeople() {
+      return this.$store.state.randomPeople;
+    },
+    gameCollection() {
+      const gameCollection = [...this.randomPeople];
+      gameCollection.push(this.person);
+
+      return gameCollection.sort((a, b) => {
+        const nameA = a.Name.toUpperCase(); // ignore upper and lowercase
+        const nameB = b.Name.toUpperCase(); // ignore upper and lowercase
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+        return 0;
+      });
+    },
+
+  },
+  methods: {
+    nextPerson() {
+      this.$store.dispatch('showNextPerson');
+    },
   },
 };
 </script>

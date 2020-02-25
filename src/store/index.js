@@ -146,7 +146,7 @@ export default new Vuex.Store({
           context.commit('SET_PEOPLE_COLLECTION_FAIL', false);
           context.commit('SET_PEOPLE_COLLECTION_PENDING', false);
           rseolve('Success');
-        }, 2000);
+        }, 1000);
       });
       call.then(() => {
         context.dispatch('setCurrentToRandom');

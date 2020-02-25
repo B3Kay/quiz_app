@@ -9,7 +9,10 @@
           color="#fff"
         /></span>
     </div>
-    <GameCard v-else />
+    <GameCard
+      v-else
+      :person="currentPerson"
+    />
   </div>
 </template>
 
@@ -32,6 +35,11 @@ export default {
     loadingCollection() {
       return this.$store.state.peopleCollectionPending;
     },
+    previousPerson() { return {}; },
+    currentPerson() { return this.$store.state.currentPerson; },
+    currentGuessOptions() { return this.$store.currentPerson; },
+    nextPerson() { return {}; },
+
   },
 };
 </script>

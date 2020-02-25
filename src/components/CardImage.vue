@@ -7,7 +7,7 @@
     <img
       v-if="true"
       class="w-full max-w-lg md:rounded-lg rounded-full"
-      :src="'https://www.squeed.com/' + person.ImageUrl"
+      :src="'https://www.squeed.com/' + url"
     >
   </div>
 </template>
@@ -19,12 +19,8 @@ export default {
   components: {
     // OtherComponent,
   },
-  data() {
-    return {
-      person: {
-        ImageUrl: '/media/1002/magnus-siverbrant-700x700.jpg',
-      },
-    };
+  props: {
+    url: String,
   },
 };
 </script>

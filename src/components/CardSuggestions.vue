@@ -1,13 +1,18 @@
 <template>
   <div
+    v-if="showPeopleList.length > 1"
     id="card-suggestions"
     class="p-4"
   >
-    <suggestion-button>
-      Rose Baladatti
+    <suggestion-button
+      v-for="people in showPeopleList"
+
+      :key="people.Id"
+      :content="people.Name"
+      @click.native="checkIfCorrectPerson(people)"
+    >
+      {{ people.Name }}
     </suggestion-button>
-    <suggestion-button>Bosse Bengtsån </suggestion-button>
-    <suggestion-button>Anna Ingridsson</suggestion-button>
   </div>
 </template>
 
@@ -18,14 +23,44 @@ export default {
   components: {
     SuggestionButton,
   },
+  props: {
+    peopleList: {
+      type: Array,
+      default: () => []
+      ,
+    },
+    level: Number,
+  },
   data() {
     return {
 
     };
   },
+  computed: {
+    showPeopleList() {
+      // console.log(this.peopleList);
+      if (this.peopleList.length > 0) {
+        return this.peopleList;
+      }
+      const placeholder = [];
+      for (let index = 0; index < this.level.length; index += 1) {
+        const dummy = { Name: ' ', Id: ' ' };
+        placeholder.push(dummy);
+      }
+      return placeholder;
+    },
+  },
+  // mounted() {
+  //   this.$emit('check-person', this.value);
+  // },
+  methods: {
+    nextPerson() {
+      this.$store.dispatch('showNextPerson');
+    },
+    checkIfCorrectPerson(param) { console.log(param); this.$store.dispatch('checkIfCorrectPerson', param); },
+  },
 };
 </script>
 
 <style  scoped>
-
 </style>
