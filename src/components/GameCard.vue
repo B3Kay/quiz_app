@@ -3,7 +3,7 @@
   <div
     id="game-card"
     class="bg-white rounded-lg items-center"
-    :style="{height: '47rem'}"
+    :style="{minHeight: '47rem'}"
   >
     <transition name="card-content">
       <div v-show="!parentIsAnimating">
