@@ -1,7 +1,7 @@
 <template>
   <div
     id="app"
-    class="h-screen bg-gray-200"
+    class="h-screen bg-gray-200 flex flex-col"
   >
     <div
       v-show="this.$route.path !== '/game'"
@@ -21,6 +21,9 @@
       </router-link> |
       <router-link to="/about">
         About
+      </router-link>
+      <router-link to="/cards">
+        Cards
       </router-link>
     </div>
     <router-view />

@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Game from '../views/Game.vue';
+import Cards from '../views/Cards.vue';
 import NameGame from '../views/NameGame.vue';
 import Highscore from '../views/Highscore.vue';
 
@@ -16,6 +17,7 @@ const routes = [
   { path: '/game', name: 'game', component: Game },
   { path: '/squeedoo', name: 'Squeedoo', component: NameGame },
   { path: '/highscore', name: 'Highscore', component: Highscore },
+  { path: '/cards', name: 'Cards', component: Cards },
   {
     path: '/about',
     name: 'About',

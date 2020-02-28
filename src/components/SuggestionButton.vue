@@ -3,7 +3,8 @@
     id="suggestion-button"
     class="bg-transparent hover:bg-gradient-r-red-orange-red text-gray-700 font-semibold
     hover:text-white py-3 px-4 border-2 border-gray-500 hover:border-transparent
- rounded-full text-left mb-3 font-bold cursor-pointer"
+ rounded-full text-left mb-3 font-bold cursor-pointer focus:outline-none active:bg-blue-200"
+    v-on:
   >
     <!-- @click="onClick" -->
     {{ content }}
