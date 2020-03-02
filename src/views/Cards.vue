@@ -30,7 +30,7 @@
         :ref="`card-item-${card.name}`"
 
         :data-index="index"
-        :class="'card-middle rounded-lg relative shadow-2xl'"
+        :class="'card-item rounded-lg relative'"
         :style="{background: card.color}"
       >
         <h2 class="text-white text-2xl uppercase font-bold">
@@ -96,14 +96,14 @@ export default {
     enter(el, done) {
       const { index } = el.dataset;
       const delay = index * 500;
-      const offset = index * 25;
+      const offset = index * 1;
       setTimeout(() => {
         gsap.to(
           el,
           0.5,
           {
             transform: `scale(${1 - (index / 10)}, 1)`,
-            top: `${offset}px`,
+            top: `${offset}rem`,
             opacity: 1,
             onComplete: done,
           },
@@ -127,13 +127,13 @@ export default {
 
           const { index } = el.dataset;
           const delay = index * 500;
-          const offset = index === 0 ? 0 : index * 25;
+          const offset = index === 0 ? 0 : index * 1;
           gsap.to(
             el,
-            0.5,
+            0.8,
             {
               transform: `scale(${1 - (index / 10)}, 1)`,
-              top: `${offset}px`,
+              top: `${offset}rem`,
               opacity: 1,
               // onComplete: done,
             },
@@ -151,7 +151,7 @@ export default {
           {
             top: '-1000px',
             // transform: 'scale(0, 0)',
-            opacity: 0,
+            // opacity: 0,
             onComplete: done,
           },
         );
@@ -183,34 +183,19 @@ export default {
 <style scoped>
 .grid-container {
   display: grid;
-  grid-template-columns: 40px 40px 40px auto 40px 40px 40px;
-  grid-template-rows: 5rem auto 3rem 3rem 100px;
+  /* grid-template-columns: 40px 40px 40px auto 40px 40px 40px; */
+  grid-template-columns: 1rem auto  1rem;
+  grid-template-rows: 1rem auto 4rem;
+  /* grid-template-rows: 5rem auto 3rem 3rem 100px; */
 }
-.card-top {
+
+.card-item {
   grid-column-start: 2;
-  grid-column-end: 7;
+  grid-column-end: 3;
   /*  */
   grid-row-start: 2;
   grid-row-end: 3;
-  /* background: rgba(255, 000, 143, 1); */
-  /* grid-area: topcard; */
-}
-.card-middle {
-  grid-column-start: 3;
-  grid-column-end: 6;
-  /*  */
-  grid-row-start: 2;
-  grid-row-end: 4;
   /* background: rgba(255, 255, 143, 1); */
   /* grid-area: middle-card; */
-}
-.card-bottom {
-  grid-column-start: 4;
-  grid-column-end: 5;
-  /*  */
-  grid-row-start: 2;
-  grid-row-end: 5;
-  /* background: rgba(0, 255, 143, 1); */
-  /* grid-area: bottom-card; */
 }
 </style>
