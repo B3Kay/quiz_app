@@ -30,7 +30,7 @@
         :ref="`card-item-${card.name}`"
 
         :data-index="index"
-        :class="'card-item rounded-lg relative'"
+        :class="'card-item rounded-lg relative shadow-2xl'"
         :style="{background: card.color}"
       >
         <h2 class="text-white text-2xl uppercase font-bold">
