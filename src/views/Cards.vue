@@ -30,10 +30,12 @@
         :ref="`card-item-${card.name}`"
 
         :data-index="index"
-        :class="'card-middle rounded-lg relative'"
+        :class="'card-middle rounded-lg relative shadow-2xl'"
         :style="{background: card.color}"
       >
-        {{ card.name }} {{ index }}
+        <h2 class="text-white text-2xl uppercase font-bold">
+          {{ card.name }} {{ index }}
+        </h2>
       </card>
     </transition-group>
   <!-- </div> -->
@@ -82,12 +84,11 @@ export default {
     beforeEnter(el) {
       // el.style.opacity = 0;
       const { index } = el.dataset;
-      el.style.transform = `scale(${0.0})`;
+      el.style.transform = `scale(${0.3})`;
       el.style.top = '500px';
       el.style.zIndex = 1000 - this.renderZIndex;
       this.renderZIndex += 1;
       el.style.opacity = 0;
-      // el.style.transform = `translateX(${index * 25})`;
       if (!this.animating) {
         this.animating = true;
       }
@@ -101,7 +102,6 @@ export default {
           el,
           0.5,
           {
-            // transform: `translateY(${offset}px) scale(${1 - (index / 10)}, 1)`,
             transform: `scale(${1 - (index / 10)}, 1)`,
             top: `${offset}px`,
             opacity: 1,
@@ -119,15 +119,11 @@ export default {
     beforeLeave() {
       if (!this.animating) { this.animating = true; }
 
-      // console.log(this.cards);
-      // console.log(this.$refs);
       this.cards.forEach((card) => {
         setTimeout(() => {
           const ref = this.$refs[`card-item-${card.name}`];
 
-          // console.log(ref);
           const el = ref[0].$el;
-          console.log(el.textContent);
 
           const { index } = el.dataset;
           const delay = index * 500;
@@ -151,10 +147,11 @@ export default {
       setTimeout(() => {
         gsap.to(
           el,
-          0.5,
+          0.8,
           {
-            transform: 'translateY(-1000px)',
-            // opacity: 0,
+            top: '-1000px',
+            // transform: 'scale(0, 0)',
+            opacity: 0,
             onComplete: done,
           },
         );
