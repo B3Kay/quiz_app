@@ -74,7 +74,6 @@ export default {
       return Math.floor(Math.random() * this.items.length);
     },
     add() {
-      console.log('clicked');
       this.cards.splice(0, 1);
       // this.cards.splice(this.cards.length, 0, {
       // name: 'hidden', position: 'hidden', color: 'rgba(0, 0, 143, 1) ' });
