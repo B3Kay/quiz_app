@@ -2,9 +2,10 @@
   <div class="home">
     <img
       alt="Vue logo"
-      src="../assets/logo.png"
+      src="https://github.com/b3kay.png"
+      class="m-auto mb-4"
     >
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <HelloWorld msg="This is a Sandbox for my personal Vue.js Training." />
   </div>
 </template>
 
